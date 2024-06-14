@@ -8,7 +8,7 @@ tags.xlsx
 risks.json
 technical-assets.json
 stats.json
-
+.task
 
 # Binaries for programs and plugins
 *.exe
