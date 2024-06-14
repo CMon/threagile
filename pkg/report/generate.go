@@ -206,6 +206,22 @@ func Generate(config reportConfigReader, readResult *model.ReadResult, commands 
 		if err != nil {
 			return err
 		}
+
+		progressReporter.Info("Writing report adoc")
+		adocReporter := NewAdocReport(config.GetOutputFolder(), riskRules)
+		err = adocReporter.WriteReport(readResult.ParsedModel,
+			filepath.Join(config.GetOutputFolder(), config.GetDataFlowDiagramFilenamePNG()),
+			filepath.Join(config.GetOutputFolder(), config.GetDataAssetDiagramFilenamePNG()),
+			config.GetInputFile(),
+			config.GetSkipRiskRules(),
+			config.GetBuildTimestamp(),
+			config.GetThreagileVersion(),
+			modelHash,
+			readResult.IntroTextRAA,
+			readResult.CustomRiskRules)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
